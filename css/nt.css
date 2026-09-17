@@ -1,0 +1,146 @@
+@font-face {
+  font-family: "PixelSans";
+  src: local("Tahoma"), local("MS Sans Serif"), local("Segoe UI"), local("Arial");
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; height: 100%; overflow: hidden;
+  font-family: "PixelSans", "MS Sans Serif", Tahoma, sans-serif;
+  font-size: 11px; color: #000; user-select: none;
+  background: #000; cursor: default;
+}
+.hidden { display: none !important; }
+.stage { position: absolute; inset: 0; }
+#boot { background: #000; color: #c0c0c0; padding: 16px; }
+#boot-text { margin: 0; font-family: "Lucida Console", "Courier New", monospace; font-size: 13px; white-space: pre-wrap; }
+#splash { background: #000080; display: flex; align-items: center; justify-content: center; }
+.splash-card {
+  width: 480px; height: 320px; background: #000060;
+  border: 2px solid #fff; color: #fff; position: relative;
+  box-shadow: 8px 8px 0 #000;
+}
+.splash-flag {
+  position: absolute; left: 24px; top: 36px; width: 90px; height: 60px;
+  background: linear-gradient(180deg, #e81123 0 20%, #fff 20% 40%, #e81123 40% 60%, #fff 60% 80%, #e81123 80% 100%);
+  box-shadow: inset 0 0 0 1px #000;
+}
+.splash-flag::before {
+  content: ""; position: absolute; left: 0; top: 0; width: 36px; height: 32px; background: #002868;
+}
+.splash-copy { position: absolute; left: 130px; top: 40px; }
+.splash-win { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+.splash-win span { display: block; font-size: 36px; font-style: italic; }
+.splash-ed { margin-top: 18px; font-size: 20px; }
+.splash-ver { margin-top: 8px; opacity: .9; }
+.splash-copyr { position: absolute; bottom: 16px; left: 24px; font-size: 10px; opacity: .85; }
+#logon { background: #008080; }
+.logon-desk { position: absolute; inset: 0; background: #008080; }
+.dlg {
+  position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%);
+  background: #c0c0c0; border: 2px solid; border-color: #fff #000 #000 #fff;
+  box-shadow: 1px 1px 0 #808080; min-width: 360px;
+}
+.titlebar {
+  background: #000080; color: #fff; height: 18px; display: flex; align-items: center;
+  padding: 0 3px; font-weight: 700; font-size: 11px; gap: 4px;
+}
+.titlebar.inactive { background: #808080; }
+.sysbtn, .wbtn {
+  width: 16px; height: 14px; background: #c0c0c0; border: 1px solid;
+  border-color: #fff #000 #000 #fff; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 9px; color: #000; flex: 0 0 16px;
+}
+.wbtn { margin-left: 2px; }
+.titlebar .caption { flex: 1; overflow: hidden; white-space: nowrap; }
+.dlg-body { padding: 12px; }
+.logon-body { display: flex; gap: 12px; }
+.logon-icon {
+  width: 48px; height: 48px; background: #000080; color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; border: 2px solid #fff;
+}
+label { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+input, select, textarea {
+  font: 11px "PixelSans", Tahoma, sans-serif; border: 2px solid; border-color: #808080 #fff #fff #808080;
+  background: #fff; padding: 2px 4px;
+}
+.dlg-btns { display: flex; justify-content: flex-end; gap: 8px; padding: 8px 12px 12px; }
+.btn {
+  min-width: 74px; height: 23px; background: #c0c0c0; border: 2px solid;
+  border-color: #fff #000 #000 #fff; font: 11px "PixelSans", Tahoma, sans-serif;
+}
+.btn:active { border-color: #000 #fff #fff #000; }
+.btn.default { outline: 1px dotted #000; outline-offset: -5px; box-shadow: 0 0 0 1px #000; }
+#desktop { background: #008080; }
+#wallpaper { position: absolute; inset: 0; background: #008080; }
+.window {
+  position: absolute; background: #c0c0c0; border: 2px solid; border-color: #fff #000 #000 #fff;
+  min-width: 220px; min-height: 120px; display: flex; flex-direction: column;
+}
+.window.maximized { inset: 0 !important; width: auto !important; height: auto !important; }
+.win-chrome { display: flex; align-items: center; background: #000080; color: #fff; height: 18px; padding: 0 2px; gap: 2px; }
+.window.inactive .win-chrome { background: #808080; }
+.menu {
+  display: flex; background: #c0c0c0; border-bottom: 1px solid #808080; height: 20px; padding: 0 4px;
+}
+.menu > span { padding: 2px 8px; }
+.menu > span:hover, .menu > span.open { background: #000080; color: #fff; }
+.menu-drop {
+  position: absolute; background: #c0c0c0; border: 2px solid; border-color: #fff #000 #000 #fff;
+  min-width: 160px; z-index: 50; padding: 2px 0;
+}
+.menu-drop div { padding: 3px 22px; }
+.menu-drop div:hover { background: #000080; color: #fff; }
+.menu-drop .sep { height: 1px; background: #808080; margin: 3px 4px; padding: 0; }
+.client { flex: 1; background: #fff; border: 2px solid; border-color: #808080 #fff #fff #808080; overflow: auto; position: relative; }
+.client.gray { background: #c0c0c0; border-color: #fff #808080 #808080 #fff; }
+.status { height: 18px; border-top: 1px solid #fff; background: #c0c0c0; display: flex; align-items: center; padding: 0 6px; font-size: 10px; }
+.icon-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 12px; align-content: flex-start; }
+.icon {
+  width: 72px; text-align: center; cursor: default;
+}
+.icon .pic {
+  width: 32px; height: 32px; margin: 0 auto 4px; image-rendering: pixelated;
+  background: #000080; border: 1px solid #000;
+}
+.icon .lab { background: transparent; padding: 1px 2px; }
+.icon.sel .lab { background: #000080; color: #fff; }
+.mdi { position: absolute; background: #808080; inset: 0; overflow: auto; }
+.group-win { position: absolute; background: #c0c0c0; border: 2px solid; border-color: #fff #000 #000 #fff; display: flex; flex-direction: column; }
+.sb { height: 16px; background: #000080; color: #fff; display: flex; align-items: center; padding: 0 4px; font-weight: 700; }
+.notepad { width: 100%; height: 100%; border: 0; resize: none; outline: none; font: 12px "Lucida Console", monospace; padding: 4px; }
+.calc { padding: 8px; background: #c0c0c0; }
+.calc-disp { background: #fff; border: 2px solid; border-color: #808080 #fff #fff #808080; text-align: right; padding: 4px 6px; font: 16px "Lucida Console", monospace; margin-bottom: 8px; }
+.calc-keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.clock-face { width: 180px; height: 180px; margin: 12px auto; border-radius: 50%; background: #fff; border: 4px solid #000080; position: relative; }
+.hand { position: absolute; left: 50%; top: 50%; transform-origin: 50% 100%; background: #000; }
+#tasklist { z-index: 10000; }
+#task-select { width: 100%; height: 120px; }
+.hint { color: #404040; }
+.paint-bar { display: flex; gap: 4px; padding: 4px; background: #c0c0c0; }
+canvas#paint { background: #fff; cursor: crosshair; display: block; }
+.fm { display: flex; height: 100%; }
+.tree, .files { flex: 1; overflow: auto; padding: 4px; font-family: "Lucida Console", monospace; font-size: 11px; }
+.tree { border-right: 2px solid #808080; background: #fff; }
+.prompt { background: #000; color: #c0c0c0; font: 13px "Lucida Console", monospace; padding: 6px; height: 100%; white-space: pre-wrap; overflow: auto; }
+.prompt input { background: transparent; border: 0; color: #c0c0c0; font: inherit; width: 70%; outline: none; }
+.about { display: flex; gap: 12px; padding: 16px; }
+.help-body { padding: 10px; line-height: 1.45; }
+.help-body h1 { font-size: 14px; }
+.mine { display: inline-block; border-collapse: collapse; margin: 8px; }
+.mine td {
+  width: 16px; height: 16px; background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff;
+  text-align: center; font-size: 11px; font-weight: 700;
+}
+.mine td.open { border: 1px solid #808080; background: #bdbdbd; }
+.mine td.mine { background: #c0c0c0; }
+.sol { background: #008000; height: 100%; padding: 8px; }
+.card {
+  width: 50px; height: 70px; background: #fff; border: 1px solid #000; border-radius: 3px;
+  display: inline-flex; align-items: center; justify-content: center; margin: 2px; font-weight: 700;
+}
+.card.red { color: #c00; }
+.card.back { background: #000080; color: #fff; }
+.cp-grid { display: flex; flex-wrap: wrap; gap: 16px; padding: 16px; }
+.resize {
+  position: absolute; right: 0; bottom: 0; width: 12px; height: 12px; cursor: nwse-resize;
+}

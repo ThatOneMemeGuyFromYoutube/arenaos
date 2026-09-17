@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Windows NT Workstation Version 3.51</title>
+  <link rel="stylesheet" href="css/nt.css" />
+</head>
+<body>
+  <div id="boot" class="stage">
+    <pre id="boot-text"></pre>
+  </div>
+  <div id="splash" class="stage hidden">
+    <div class="splash-card">
+      <div class="splash-flag"></div>
+      <div class="splash-copy">
+        <div class="splash-win">Microsoft<span>Windows NT</span></div>
+        <div class="splash-ed">Workstation</div>
+        <div class="splash-ver">Version 3.51</div>
+      </div>
+      <div class="splash-copyr">Copyright © 1985-1995 Microsoft Corp.</div>
+    </div>
+  </div>
+  <div id="logon" class="stage hidden">
+    <div class="logon-desk"></div>
+    <div class="dlg" id="logon-dlg">
+      <div class="titlebar"><span class="sysbtn"></span> Welcome to Windows NT</div>
+      <div class="dlg-body logon-body">
+        <div class="logon-icon">NT</div>
+        <div>
+          <p>Type your user name and password to log on to Windows NT.</p>
+          <label>Username:<input id="user" value="Administrator" /></label>
+          <label>Password:<input id="pass" type="password" value="password" /></label>
+          <label>From:<select><option>ARENA-NTWS</option><option>\\WORKGROUP</option></select></label>
+        </div>
+      </div>
+      <div class="dlg-btns">
+        <button class="btn default" id="btn-ok">OK</button>
+        <button class="btn" id="btn-cancel">Cancel</button>
+        <button class="btn" id="btn-shutdown">Shutdown...</button>
+        <button class="btn" id="btn-help">Help</button>
+      </div>
+    </div>
+  </div>
+  <div id="desktop" class="stage hidden">
+    <div id="wallpaper"></div>
+    <div id="windows"></div>
+    <div id="tasklist" class="dlg hidden">
+      <div class="titlebar"><span class="sysbtn"></span> Task List</div>
+      <div class="dlg-body">
+        <select id="task-select" size="8"></select>
+        <p class="hint">Press Ctrl+Esc for Task List · Alt+Tab to switch</p>
+      </div>
+      <div class="dlg-btns">
+        <button class="btn default" id="task-switch">Switch To</button>
+        <button class="btn" id="task-end">End Task</button>
+        <button class="btn" id="task-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/nt.js"></script>
+</body>
+</html>
